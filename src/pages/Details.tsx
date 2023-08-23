@@ -1,43 +1,25 @@
-import { Fragment, lazy, useEffect, useRef, useState } from 'react';
+import { Fragment, lazy, useContext, useEffect, useRef, useState } from 'react';
 import Breadcrumb from '../components/Breadcrumb';
 import { useParams } from 'react-router-dom';
 const ChartThree = lazy(() => import('../components/ChartThree'));
 const Subcomittee  = lazy(() => import('../pages/Details/SubComittee'));
 import Others from './Details/Others';
 import { Listbox, Tab, Transition } from '@headlessui/react';
+import { SurveyContext } from '../context/SurveyProvider';
 const Details = () => {
     const {code} = useParams()
-    const pageRef = useRef(false)
-    const [data, setData] = useState<any>([])
+    const {form: data} = useContext(SurveyContext)
     const [selected, setSelected] = useState<any>({
         id: 1,
         name: "worship"
     })
-    const ref = useRef(null);
-    const fetchData = async() => {
-        try {
-            const response = await fetch(`/data/churches/${code?.toLowerCase()}.json`);
-            const data = await response.json();
-            setData(data);
-        } catch (error) {
-            console.log(error)
-        }
-  } 
-  
-    useEffect(() => {
-        if(pageRef.current === false) {
-            fetchData()
-            return () => {
-                pageRef.current = true
-            }
-        }
-    }, [])
+    const ref = useRef<any>(null);
     const handleScroll = () => {
         ref?.current?.scrollIntoView({ behavior: 'smooth' });
     }
   return (
     <>
-      <Breadcrumb pageName={`${code}`} />
+      <Breadcrumb pageName={`${data?.parishName}`} />
       <div className="mx-auto max-w-270">
             <div>
                 <h1 className='text-center text-2xl'>DIOCESE OF SAN CARLOS</h1>
@@ -56,7 +38,7 @@ const Details = () => {
                             data={data?.responseDents } />
                 </div>
             </div>
-            <div  className="w-72 mt-10 mr-auto bg-white sticky top-16 p-4" >
+            <div  className="w-72 mt-10 mr-auto bg-white sticky top-16 p-4 z-[100]" >
             {/* style={{
                 right: '23px',
                 bottom: '53px',

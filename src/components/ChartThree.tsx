@@ -56,10 +56,17 @@ const ChartThree: React.FC<IChartProps> = ({
         breakpoint: 640,
         options: {
           chart: {
-            width: 200,
+            width: '100%'
           },
+          dataLabels: {
+            enabled: true
+          },
+          legend:{
+            show: false,
+            position: 'bottom'
+          }
         },
-      },
+      }
     ],
   })
 

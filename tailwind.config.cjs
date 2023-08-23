@@ -44,6 +44,7 @@ module.exports = {
       success: '#219653',
       danger: '#D34053',
       warning: '#FFA70B',
+      ...defaultTheme.colors
     },
     screens: {
       '2xsm': '375px',

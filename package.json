@@ -1,6 +1,6 @@
 {
   "homepage": "/",
-  "name": "tailadmin-react-free",
+  "name": "parish-pastoral",
   "private": true,
   "version": "1.0.5",
   "type": "module",
@@ -10,9 +10,7 @@
     "preview": "vite preview"
   },
   "author": {
-    "name": "TailAdmin",
-    "email": "hello@tailadmin.com",
-    "url": "https://tailadmin.com"
+    "name": "JR Flores"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.16",
@@ -20,7 +18,9 @@
     "angular": "^1.6.10",
     "apexcharts": "^3.41.0",
     "boostrap": "^2.0.0",
+    "firebase": "^10.1.0",
     "headlessui": "^0.0.0",
+    "immer": "^10.0.2",
     "jsvectormap": "^1.5.3",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",

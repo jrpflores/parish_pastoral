@@ -5,27 +5,26 @@ import {
     useEffect,
     useState
   } from 'react';
-import { useLocation } from 'react-router-dom';
-  
+import { auth } from '../config/firebase'
   type ILogginDetails = {
     isLoggedIn?: boolean
+    user?: any
+    setUser?: any
   }
   const AuthContext = createContext<ILogginDetails>({
-    isLoggedIn: false
+    isLoggedIn: false,
+    user: {},
   });
   const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
     const [isLoggedIn, setIsLoggin] = useState<boolean|undefined>(false);
-    const location = useLocation();
-    const {pathname} = location;
+    const [user, setUser] = useState<any>(null)
     useEffect(() => {
-            const loggedIn  = sessionStorage.getItem("auth") == "true" || false
+            const loggedIn  = (auth?.currentUser)? true : false
+            setUser(auth?.currentUser)
             setIsLoggin(loggedIn)
-            if(!loggedIn && pathname !== '/auth/signin'){
-                window.location.href ="/auth/signin"
-            }
     },[]);
     return (
-      <AuthContext.Provider value={{ isLoggedIn }}>
+      <AuthContext.Provider value={{ isLoggedIn, user, setUser }}>
         {children}
       </AuthContext.Provider>
     );

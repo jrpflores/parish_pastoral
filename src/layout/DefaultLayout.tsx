@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthProvider';
 
 const DefaultLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);

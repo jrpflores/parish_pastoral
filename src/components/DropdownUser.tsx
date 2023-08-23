@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-
-import UserOne from '../images/user/user-01.png';
+import { Link, useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import { auth } from '../config/firebase';
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -34,13 +34,21 @@ const DropdownUser = () => {
     document.addEventListener('keydown', keyHandler);
     return () => document.removeEventListener('keydown', keyHandler);
   });
-
+  const navigate = useNavigate()
+  const handleLogout = async()=> {
+    try {
+      await signOut(auth)
+      navigate('/auth/signin')
+    } catch (error) {
+      
+    }
+  }
   return (
     <div className="relative">
       <Link
         ref={trigger}
         onClick={() => {
-          window.location.href = "/auth/signin"
+          handleLogout()
         }}
         className="flex items-center gap-4"
         to="#"
