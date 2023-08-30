@@ -14,7 +14,7 @@ const coreRoutes = [
     component: Details,
   },
   {
-    path: '/add-survey-stats',
+    path: '/add-survey-stats/:code?',
     title: 'Add Survey Result',
     component: AddSurveyResult,
   }

@@ -8,7 +8,8 @@ import { Listbox, Tab, Transition } from '@headlessui/react';
 import { SurveyContext } from '../context/SurveyProvider';
 const Details = () => {
     const {code} = useParams()
-    const {form: data} = useContext(SurveyContext)
+    const pageRef = useRef(false)
+    const {form: data, setParishCode} = useContext(SurveyContext)
     const [selected, setSelected] = useState<any>({
         id: 1,
         name: "worship"
@@ -17,6 +18,14 @@ const Details = () => {
     const handleScroll = () => {
         ref?.current?.scrollIntoView({ behavior: 'smooth' });
     }
+    useEffect(() => {
+        if(pageRef.current === false){
+            setParishCode(code)
+            return ()=>{
+                pageRef.current = true
+            }
+        }
+    },[])
   return (
     <>
       <Breadcrumb pageName={`${data?.parishName}`} />

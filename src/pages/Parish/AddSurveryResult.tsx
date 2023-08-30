@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import AddSurveyTable from "./AddSuveryTable";
 import { SurveyContext } from "../../context/SurveyProvider";
 import { templateSurvey } from "../../config/template";
@@ -9,10 +9,12 @@ import toast from "react-hot-toast";
 
 
 const AddSurveyResult = () => {
-    const {form, setForm:setFormData} = useContext(SurveyContext)
+    const {form, setForm:setFormData, setParishCode} = useContext(SurveyContext)
     const toastId = useRef<any>(null);
     const [isSaving, setIsSaving] = useState(false)
     const navigate = useNavigate()
+    const {code} = useParams()
+    const pageRef = useRef(false)
     const handleChange = (e:any) => {
         let val:any = isNaN(e.target.value) || e.target.value===''? e.target.value : (Number(e.target.value));
         if(!isNaN(val) && e.target.type === 'number') {
@@ -51,6 +53,16 @@ const AddSurveyResult = () => {
             setIsSaving(false)
         }
     }
+    useEffect(() => {
+        if(pageRef.current === false){
+            if(code){
+                setParishCode(code)
+            }
+            return ()=>{
+                pageRef.current = true
+            }
+        }
+    },[])
   return (
     <>
        <div className='mb-8'>

@@ -143,7 +143,7 @@ const TableOne = () => {
                   </button>
                   <button title="Update" onClick={() => {
                       setForm(value)
-                      navigate('/add-survey-stats')
+                      navigate(`/add-survey-stats/${value?.parishCode}`)
                   }} className="hover:text-primary ml-2 text-meta-3 font-bold">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"  
                       width="18"
