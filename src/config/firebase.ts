@@ -3,13 +3,13 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from 'firebase/auth'
 import { collection, getFirestore } from "firebase/firestore";
 const firebaseConfig = {
-  apiKey: "AIzaSyC2MKryEjrDIV9T7xlqRT4ErbCu8XP93ZE",
-  authDomain: "parish-pastoral.firebaseapp.com",
-  projectId: "parish-pastoral",
-  storageBucket: "parish-pastoral.appspot.com",
-  messagingSenderId: "374868267409",
-  appId: "1:374868267409:web:5d4202dc6eb8028cfc0a30",
-  measurementId: "G-EQ52NBNPFP"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
